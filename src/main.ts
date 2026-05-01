@@ -30,6 +30,8 @@ const state = {
   isFullscreen: false,
 }
 
+let isStoppingTest = false
+
 function getCurrentColor(): ColorStep {
   return colorSequence[state.colorIndex]
 }
@@ -72,9 +74,15 @@ async function startTest() {
 }
 
 async function stopTest() {
+  if (state.mode === 'idle' || isStoppingTest) {
+    return
+  }
+
+  isStoppingTest = true
+  await exitFullscreen()
   state.mode = 'idle'
   render()
-  await exitFullscreen()
+  isStoppingTest = false
 }
 
 function renderIdleView() {
@@ -137,6 +145,12 @@ function render() {
 
 document.addEventListener('fullscreenchange', () => {
   state.isFullscreen = Boolean(document.fullscreenElement)
+
+  if (state.mode === 'testing' && !state.isFullscreen) {
+    state.mode = 'idle'
+    render()
+    return
+  }
 
   if (state.mode === 'testing') {
     render()
