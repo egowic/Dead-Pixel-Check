@@ -34,3 +34,5 @@ npm run build
 ## Deployment
 
 This project is configured for GitHub Pages project-site deployment under `/Dead-Pixel-Check/`.
+
+The source app lives in `src/` and the publishable static output is mirrored into `docs/` for GitHub Pages hosting.
