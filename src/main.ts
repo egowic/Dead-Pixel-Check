@@ -17,11 +17,11 @@ if (!appRoot) {
 const app = appRoot
 
 const colorSequence: ColorStep[] = [
-  { name: 'Black', value: '#050505', textColor: '#f5f5f5' },
+  { name: 'Black', value: '#000000', textColor: '#f5f5f5' },
   { name: 'White', value: '#ffffff', textColor: '#101010' },
-  { name: 'Red', value: '#ff2b2b', textColor: '#fff5f5' },
-  { name: 'Green', value: '#00d46a', textColor: '#03140a' },
-  { name: 'Blue', value: '#005dff', textColor: '#f3f7ff' },
+  { name: 'Red', value: '#ff0000', textColor: '#fff5f5' },
+  { name: 'Green', value: '#00ff00', textColor: '#03140a' },
+  { name: 'Blue', value: '#0000ff', textColor: '#f3f7ff' },
 ]
 
 const state = {
