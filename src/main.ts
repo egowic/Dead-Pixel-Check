@@ -117,14 +117,7 @@ function renderTestingView() {
       data-action="advance"
       style="--test-color: ${currentColor.value}; --test-text: ${currentColor.textColor};"
       aria-label="${currentColor.name} pixel test surface"
-    >
-      <div class="test-hud" aria-hidden="true">
-        <span>${currentColor.name}</span>
-        <span>${state.colorIndex + 1}/${colorSequence.length}</span>
-        <span>${state.isFullscreen ? 'Fullscreen' : 'Windowed'}</span>
-        <span>Esc to exit</span>
-      </div>
-    </main>
+    ></main>
   `
 
   const testSurface = app.querySelector<HTMLElement>('[data-action="advance"]')

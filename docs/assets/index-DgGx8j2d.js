@@ -26,12 +26,5 @@
       data-action="advance"
       style="--test-color: ${e.value}; --test-text: ${e.textColor};"
       aria-label="${e.name} pixel test surface"
-    >
-      <div class="test-hud" aria-hidden="true">
-        <span>${e.name}</span>
-        <span>${r.colorIndex+1}/${n.length}</span>
-        <span>${r.isFullscreen?`Fullscreen`:`Windowed`}</span>
-        <span>Esc to exit</span>
-      </div>
-    </main>
+    ></main>
   `,t.querySelector(`[data-action="advance"]`)?.addEventListener(`pointerup`,()=>a(1))}function f(){if(t.dataset.mode=r.mode,r.mode===`testing`){d();return}u()}document.addEventListener(`fullscreenchange`,()=>{r.isFullscreen=!!document.fullscreenElement,r.mode===`testing`&&f()}),document.addEventListener(`keydown`,e=>{if(r.mode===`testing`){if(e.key===`Escape`){e.preventDefault(),l();return}if(e.key===`ArrowRight`){e.preventDefault(),a(1);return}if(e.key===`ArrowLeft`){e.preventDefault(),a(-1);return}e.key===`Tab`||e.key===`Shift`||e.key===`Alt`||e.key===`Meta`||e.key===`Control`||(e.preventDefault(),a(1))}}),f();
