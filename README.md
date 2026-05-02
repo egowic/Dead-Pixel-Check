@@ -1,6 +1,6 @@
 # Dead Pixel Check
 
-[Live Demo](https://egowic.github.io/Dead-Pixel-Check/)
+[Open Dead Pixel Check](https://egowic.github.io/Dead-Pixel-Check/)
 
 Dead Pixel Check is a lightweight fullscreen web app for quickly inspecting displays with solid test colors.
 
