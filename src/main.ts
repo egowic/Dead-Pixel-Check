@@ -133,6 +133,7 @@ function renderTestingView() {
 }
 
 function render() {
+  document.documentElement.dataset.mode = state.mode
   app.dataset.mode = state.mode
 
   if (state.mode === 'testing') {

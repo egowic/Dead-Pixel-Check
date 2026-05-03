@@ -151,6 +151,11 @@ kbd {
   position: relative;
 }
 
+html[data-mode='testing'],
+html[data-mode='testing'] * {
+  cursor: none !important;
+}
+
 @media (max-width: 640px) {
   .shell {
     padding: 16px;
