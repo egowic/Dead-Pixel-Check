@@ -31,6 +31,7 @@ const state = {
 }
 
 let isStoppingTest = false
+let pointerLockWasActive = false
 
 function getCurrentColor(): ColorStep {
   return colorSequence[state.colorIndex]
@@ -54,6 +55,28 @@ async function enterFullscreen() {
   }
 }
 
+function requestPointerLock() {
+  const testSurface = app.querySelector<HTMLElement>('[data-action="advance"]')
+
+  try {
+    testSurface?.requestPointerLock()
+  } catch {
+    // Safari and privacy settings can deny pointer lock; CSS still hides the cursor.
+  }
+}
+
+function exitPointerLock() {
+  if (!document.pointerLockElement) {
+    return
+  }
+
+  try {
+    document.exitPointerLock()
+  } catch {
+    // If the browser already released pointer lock, there is nothing to restore.
+  }
+}
+
 async function exitFullscreen() {
   if (!document.fullscreenElement) {
     return
@@ -70,6 +93,7 @@ async function startTest() {
   state.mode = 'testing'
   state.colorIndex = 0
   render()
+  requestPointerLock()
   await enterFullscreen()
 }
 
@@ -79,6 +103,7 @@ async function stopTest() {
   }
 
   isStoppingTest = true
+  exitPointerLock()
   await exitFullscreen()
   state.mode = 'idle'
   render()
@@ -155,6 +180,15 @@ document.addEventListener('fullscreenchange', () => {
 
   if (state.mode === 'testing') {
     render()
+  }
+})
+
+document.addEventListener('pointerlockchange', () => {
+  const hadPointerLock = pointerLockWasActive
+  pointerLockWasActive = Boolean(document.pointerLockElement)
+
+  if (state.mode === 'testing' && hadPointerLock && !pointerLockWasActive) {
+    void stopTest()
   }
 })
 
